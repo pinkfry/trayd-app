@@ -1,0 +1,10 @@
+<svg id="Header" xmlns="http://www.w3.org/2000/svg" width="24.143" height="22" viewBox="0 0 24.143 22">
+  <g>
+    <g>
+      <path  d="M22.6,7.714H1.548a1.572,1.572,0,0,1,0-3.143H22.6a1.572,1.572,0,0,1,0,3.143Z" transform="translate(0 -4.571)" fill="#ff485a"/>
+      <path d="M13.928,42H1.548a1.572,1.572,0,0,1,0-3.143H13.928a1.572,1.572,0,0,1,0,3.143Z" transform="translate(0 -29.428)" fill="#ff485a"/>
+    </g>
+    <path d="M72.6,42H70.119a1.572,1.572,0,0,1,0-3.143H72.6A1.572,1.572,0,0,1,72.6,42Z" transform="translate(-50 -29.428)" fill="#ffbbc0"/>
+    <path d="M22.6,76.286H1.548a1.572,1.572,0,0,1,0-3.143H22.6a1.572,1.572,0,0,1,0,3.143Z" transform="translate(0 -54.286)" fill="#ff485a"/>
+  </g>
+</svg>
