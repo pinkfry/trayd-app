@@ -43,23 +43,16 @@ class _DashboardPageState extends State<DashboardPage> {
         if (mounted && _user != null && _user.user != null) {
           setState(() {
             this.user = _user.user[0];
-          
-               DashboardPage.pageName ="hello";
-                // this?.user?.google_address ?? "Select Location";
-          
-           
           });
           if (this.user.location != null) {
-            latLng =latlong.LatLng(this.user.location.lat, this.user.location.lng);
+            latLng =
+                latlong.LatLng(this.user.location.lat, this.user.location.lng);
             Utils.getPredictionFromLatLng(latLng).then((address) {
               if (address != null) {
                 if (mounted) {
                   setState(() {
-                    this.user.google_address = address.featureName;
-                   
-                      DashboardPage.pageName =
-                          this?.user?.google_address ?? "Select Location";
-                    
+                    this.user.google_address = address.subLocality;
+                    DashboardPage.pageName=this.user.google_address;
                   });
                 }
               }
@@ -116,7 +109,8 @@ class _DashboardPageState extends State<DashboardPage> {
             if (res != null) {
               if (user != null) {
                 setState(() {
-                  user.google_address = res.featureName;
+                  user.google_address = res.subLocality;
+                  
                 });
               }
               if (mounted) {
@@ -155,50 +149,54 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
     if (jobs != null && jobs.length != 0) {
-      return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      this?.user?.google_address ?? "Select Location",
-                      style: ThemeConstant.text_style_500_18_3,
-                    ),
+      return Container(
+        color: ThemeConstant.color_background,
+        
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: <Widget>[
+                //     Expanded(
+                //       child: Text(
+                //         this?.user?.google_address ?? "Select Location",
+                //         style: ThemeConstant.text_style_500_18_3,
+                //       ),
+                //     ),
+                //     Builder(
+                //       builder: (context) => FlatButton(
+                //         child: Text(
+                //           "Change Location",
+                //           style: TextStyle(color: Colors.blue),
+                //         ),
+                //         onPressed: () async {
+                //           getLocation();
+                //         },
+                //       ),
+                //     )
+                //   ],
+                // ),
+                Expanded(
+                  child: RefreshIndicator(
+                    key: _refreshIndicatorKey,
+                    onRefresh: _refresh,
+                    child: ListView.builder(
+                        itemCount: jobs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return JobListItem(
+                            job: jobs[index],
+                            onTab: () {
+                              onJobClick(jobs[index]);
+                            },
+                          );
+                        }),
                   ),
-                  Builder(
-                    builder: (context) => FlatButton(
-                      child: Text(
-                        "Change Location",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      onPressed: () async {
-                        getLocation();
-                      },
-                    ),
-                  )
-                ],
-              ),
-              Expanded(
-                child: RefreshIndicator(
-                  key: _refreshIndicatorKey,
-                  onRefresh: _refresh,
-                  child: ListView.builder(
-                      itemCount: jobs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return JobListItem(
-                          job: jobs[index],
-                          onTab: () {
-                            onJobClick(jobs[index]);
-                          },
-                        );
-                      }),
                 ),
-              ),
-            ],
-          ));
+              ],
+            )),
+      );
     } else {
       return Center(
         child: Text("no jobs!"),

@@ -37,6 +37,7 @@ class HomePageState extends State<HomePage> {
   int _selectedDrawerIndex = 0;
   int _selectedBottomIndex = 0;
   User user = User();
+  User locationUser;
 
   @override
   void initState() {
@@ -70,7 +71,10 @@ class HomePageState extends State<HomePage> {
         return MoreScreen();
     }
   }
-
+  
+  static setStateFromOutside(){
+        
+  }
 
   _getAppBar(int pos) {
    
@@ -93,7 +97,7 @@ class HomePageState extends State<HomePage> {
     }
     return MyAppBars.getMenuAppBar(name ?? "", () {
       _scaffoldKey.currentState.openDrawer();
-    },context);
+    },context,mounted,locationUser);
   }
 
   _onSelectItem(int index) {
@@ -128,23 +132,22 @@ class HomePageState extends State<HomePage> {
 
   load() async {
     latlong.LatLng latLng;
-    User innerUser;
     return FirebaseAuth.instance.currentUser().then((user) {
       return ServerApis().fetchProfile(user.uid).then((_user) {
         if (mounted && _user != null && _user.user != null) {
           
-            innerUser = _user.user[0];
+            locationUser = _user.user[0];
           }
-          if (innerUser.location != null) {
-            latLng =latlong.LatLng(innerUser.location.lat, innerUser.location.lng);
+          if (locationUser.location != null) {
+            latLng =latlong.LatLng(locationUser.location.lat, locationUser.location.lng);
             Utils.getPredictionFromLatLng(latLng).then((address) {
               if (address != null) {
                 if (mounted) {
                   setState(() {
-                    innerUser.google_address = address.featureName;
+                    locationUser.google_address = address.subLocality;
                    
                       DashboardPage.pageName =
-                          innerUser?.google_address ?? "Select Location";
+                          locationUser?.google_address ?? "Select Location";
                     
                   });
                 }
@@ -253,8 +256,9 @@ class HomePageState extends State<HomePage> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             showUnselectedLabels:true,
+            elevation: 10.0,
             currentIndex: _selectedBottomIndex,
-            backgroundColor: ThemeConstant.primaryColor,
+            backgroundColor: Colors.white,
             type: BottomNavigationBarType.fixed,
             onTap: (q) {
               switch (q) {
@@ -294,7 +298,7 @@ class HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 activeIcon: Icon(
                   Icons.work,
-                  color: ThemeConstant.background_color,
+                  color: ThemeConstant.primaryColor,
                 ),
                 backgroundColor: ThemeConstant.primaryColor,
                 icon: Icon(
@@ -309,8 +313,9 @@ class HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 activeIcon: Icon(
                   Icons.add,
-                  color: ThemeConstant.background_color,
+                  color: ThemeConstant.primaryColor,
                 ),
+                
                 backgroundColor: ThemeConstant.primaryColor,
                 icon: Icon(Icons.add, color: ThemeConstant.color_8),
                 title:
@@ -319,7 +324,7 @@ class HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 activeIcon: Icon(
                   Icons.mail,
-                  color: ThemeConstant.background_color,
+                  color: ThemeConstant.primaryColor,
                 ),
                 backgroundColor: ThemeConstant.primaryColor,
                 icon: Icon(Icons.mail, color: ThemeConstant.color_8),
@@ -329,7 +334,7 @@ class HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.add_shopping_cart,
-                    color: ThemeConstant.background_color,
+                    color: ThemeConstant.primaryColor,
                   ),
                   backgroundColor: ThemeConstant.primaryColor,
                   icon: Icon(Icons.add_shopping_cart, color: ThemeConstant.color_8),
@@ -338,7 +343,7 @@ class HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.more,
-                    color: ThemeConstant.background_color,
+                    color: ThemeConstant.primaryColor,
                   ),
                   backgroundColor: ThemeConstant.primaryColor,
                   icon: Icon(Icons.more, color: ThemeConstant.color_8),

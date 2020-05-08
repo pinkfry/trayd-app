@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_map_location_picker/google_map_location_picker.dart';
+import 'package:job_posting_bidding_app/api/app_server.dart';
+import 'package:job_posting_bidding_app/model/user.dart';
+import 'package:job_posting_bidding_app/screens/dashboard/dashboard_page.dart';
 import 'package:job_posting_bidding_app/theme/theme.dart';
 import 'package:job_posting_bidding_app/utils/utils.dart';
 import 'package:latlong/latlong.dart';
@@ -13,18 +16,24 @@ class MyAppBars {
     this.context=context;
 
   }
-  LatLng latLng;
-  static AppBar getMenuAppBar(String screen_name, Function onMenuPressed,BuildContext context) {
+  static LatLng latLng;
+  static AppBar getMenuAppBar(String screen_name, Function onMenuPressed,BuildContext context,bool mounted,User user) {
     return AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: ThemeConstant.primaryColor,
         elevation: 0,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.search, color: Colors.white,),
+          )
+        ],
         leading: IconButton(
             icon: Icon(Icons.menu, color: Colors.white),
             onPressed: onMenuPressed),
         title: GestureDetector(
             onTap: () {
-              getLocation(context);
+              getLocation(context,mounted,user);
             },
             child: Text(
               screen_name,
@@ -89,36 +98,41 @@ class MyAppBars {
 
 
 
-  static getLocation(BuildContext context) async {
+    static getLocation(BuildContext context,bool mounted,User user) async {
     if (await Location().hasPermission() == PermissionStatus.GRANTED) {
       LocationResult result = await showLocationPicker(
         context,
         "AIzaSyDzHhxbODUJJ2jD3sFt8M77d1qCvOGTp1I",
         myLocationButtonEnabled: true,
       );
-      // print(result);
-      // if (result != null && result.latLng != null) {
-      //   this.latLng =
-      //       latlong.LatLng(result.latLng.latitude, result.latLng.longitude);
-        // Utils.getPredictionFromLatLng(latLng).then((res) {
-        //   if (mounted) {
-        //     if (res != null) {
-        //       if (user != null) {
-        //         setState(() {
-        //           user.google_address = res.featureName;
-        //         });
-        //       }
-        //       if (mounted) {
-        //         ServerApis().addLatLng(user.user_id, result.latLng.latitude,
-        //             result.latLng.longitude);
-        //       }
-        //     }
-        //   }
-        // });
-      // } 
-      // else {
-      //   // this.latLng = null;
-      // }
+      print(result);
+      if (result != null && result.latLng != null) {
+        latLng =
+            latlong.LatLng(result.latLng.latitude, result.latLng.longitude);
+        Utils.getPredictionFromLatLng(latLng).then((res) {
+
+          print("hello i am here and not this is your result $res");
+          if (mounted) {
+            if (res != null) {
+              if (user != null) {
+                // setState(() {
+                //   user.google_address = res.featureName;
+                // });
+                print("hello i am again here and this is your result${res.subLocality}");
+                user.google_address=res.subLocality;
+                DashboardPage.pageName=res.subLocality;
+              }
+              if (mounted) {
+                ServerApis().addLatLng(user.user_id, result.latLng.latitude,
+                    result.latLng.longitude);
+              }
+            }
+          }
+        });
+      } 
+      else {
+        latLng = null;
+      }
     } else {
       getLocationPermission();
     }
@@ -130,3 +144,5 @@ class MyAppBars {
     } on Exception catch (e) {}
   }
 }
+//108, East Moti Bagh, Sarai Rohilla, Delhi, 110007, India
+//10/3, Goel Ln, Block 10, Shakti Nagar, Delhi, 110007, India

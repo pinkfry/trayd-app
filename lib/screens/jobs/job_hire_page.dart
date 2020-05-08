@@ -228,7 +228,7 @@ class _JobHirePageState extends State<JobHirePage> {
       return [
         Text(
           "No bids",
-          style: ThemeConstant.text_style_500_16_3,
+          style: ThemeConstant.text_style_500_13_3,
         )
       ];
     }
@@ -337,7 +337,7 @@ class _JobHirePageState extends State<JobHirePage> {
                                                       ? "Project is Marked Completed By Expert"
                                                       : "Waiting for Expert reponse",
                                               style: ThemeConstant
-                                                  .text_style_500_16_3,
+                                                  .text_style_500_13_3,
                                             )
                                           ],
                                         )

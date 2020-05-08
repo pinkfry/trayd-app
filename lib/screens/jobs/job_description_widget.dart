@@ -19,7 +19,7 @@ class JobDescription extends StatelessWidget {
                 child: Text(
               this.job.title ?? "",
               style:
-              ThemeConstant.text_style_600_20_3,
+              ThemeConstant.text_style_600_17_3,
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

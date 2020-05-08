@@ -12,13 +12,14 @@ class ThemeConstant {
   static const Color color_5 = Colors.green;
   static const Color color_6 = Colors.brown;
   static const Color color_7 = Colors.green;
+  static const Color color_background=Color(0xFFF6F6F7);
 
-  static const Color color_8 = Color(0xcaFFFFFF);
+  static const Color color_8 = Colors.grey;
 
   static const TextStyle text_style_400_20_1 =
   TextStyle(fontWeight: FontWeight.w400, fontSize: 20, color: color_1);
   static const TextStyle text_style_400_14_2 =
-  TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: color_2);
+  TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Colors.grey);
   static const TextStyle text_style_400_13_4 =
   TextStyle(fontWeight: FontWeight.w400, fontSize: 13, color: background_color);
   static const TextStyle text_style_500_18_3 =
@@ -66,13 +67,13 @@ class ThemeConstant {
   static const TextStyle text_style_400_16_2 =
   TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: color_2);
   static const TextStyle text_style_400_12_2 =
-  TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: color_2);
+  TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Colors.grey);
   static const TextStyle text_style_500_20_3 =
   TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: color_3);
-  static const TextStyle text_style_600_20_3 =
-  TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: color_3);
-  static const TextStyle text_style_500_16_3 =
-  TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: color_3);
+  static const TextStyle text_style_600_17_3 =
+  TextStyle(fontWeight: FontWeight.w600, fontSize: 17, color: color_3);
+  static const TextStyle text_style_500_13_3 =
+  TextStyle(fontWeight: FontWeight.w500, fontSize: 13, color: color_3);
   static const TextStyle text_style_400_20_2 =
   TextStyle(fontWeight: FontWeight.w400, fontSize: 20, color: color_2);
   static const TextStyle text_style_500_18_2 =
