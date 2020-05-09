@@ -12,72 +12,72 @@ class JobDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(
-            width: double.infinity,
-            child:Hero(
-                tag: this.job.id + "-title",
-                child: Text(
-              this.job.title ?? "",
-              style:
-              ThemeConstant.text_style_600_17_3,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ))),
-        SizedBox(
-          height: 8,
-        ),
-        Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-                child: Wrap(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                      children: <Widget>[
-                         Text(
-                          "Job Type",
-                          style: ThemeConstant
-                              .text_style_600_18_3,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                this
-                                    .job
-                                    .service_name ??
-                                    "",
-                                style: ThemeConstant
-                                    .text_style_500_18_primaryColor,
-                                maxLines: 1,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Expanded(
-                              child: Text(
-                                this
-                                    .job
-                                    .sub_service ??
-                                    "",
-                                style: ThemeConstant
-                                    .text_style_500_18_primaryColor,
-                                maxLines: 1,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-          ],
-        ),
+        // SizedBox(
+        //     width: double.infinity,
+        //     child:Hero(
+        //         tag: this.job.id + "-title",
+        //         child: Text(
+        //       this.job.title ?? "",
+        //       style:
+        //       ThemeConstant.text_style_600_17_3,
+        //       textAlign: TextAlign.center,
+        //       maxLines: 2,
+        //       overflow: TextOverflow.ellipsis,
+        //     ))),
+        // SizedBox(
+        //   height: 8,
+        // ),
+        // Row(
+        //   mainAxisAlignment:
+        //   MainAxisAlignment.spaceBetween,
+        //   children: <Widget>[
+        //     Expanded(
+        //         child: Wrap(
+        //           children: <Widget>[
+        //             Column(
+        //               crossAxisAlignment:
+        //               CrossAxisAlignment.start,
+        //               children: <Widget>[
+        //                  Text(
+        //                   "Job Type",
+        //                   style: ThemeConstant
+        //                       .text_style_600_18_3,
+        //                 ),
+        //                 Row(
+        //                   children: <Widget>[
+        //                     Expanded(
+        //                       child: Text(
+        //                         this
+        //                             .job
+        //                             .service_name ??
+        //                             "",
+        //                         style: ThemeConstant
+        //                             .text_style_500_18_primaryColor,
+        //                         maxLines: 1,
+        //                       ),
+        //                     ),
+        //                     SizedBox(
+        //                       width: 4,
+        //                     ),
+        //                     Expanded(
+        //                       child: Text(
+        //                         this
+        //                             .job
+        //                             .sub_service ??
+        //                             "",
+        //                         style: ThemeConstant
+        //                             .text_style_500_18_primaryColor,
+        //                         maxLines: 1,
+        //                       ),
+        //                     )
+        //                   ],
+        //                 ),
+        //               ],
+        //             ),
+        //           ],
+        //         )),
+        //   ],
+        // ),
         SizedBox(
           height: 8,
         ),

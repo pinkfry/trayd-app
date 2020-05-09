@@ -44,14 +44,16 @@ class MyAppBars {
   static AppBar getBackAppBar(String screen_name, Function onBackPressed) {
     return AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: ThemeConstant.primaryColor,
+        
+        backgroundColor: ThemeConstant.color_background,
+        brightness: Brightness.light,
         elevation: 0,
         leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: onBackPressed),
         title: Text(
           screen_name,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ));
   }
 
