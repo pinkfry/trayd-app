@@ -12,126 +12,96 @@ class JobDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // SizedBox(
-        //     width: double.infinity,
-        //     child:Hero(
-        //         tag: this.job.id + "-title",
-        //         child: Text(
-        //       this.job.title ?? "",
-        //       style:
-        //       ThemeConstant.text_style_600_17_3,
-        //       textAlign: TextAlign.center,
-        //       maxLines: 2,
-        //       overflow: TextOverflow.ellipsis,
-        //     ))),
-        // SizedBox(
-        //   height: 8,
-        // ),
-        // Row(
-        //   mainAxisAlignment:
-        //   MainAxisAlignment.spaceBetween,
-        //   children: <Widget>[
-        //     Expanded(
-        //         child: Wrap(
-        //           children: <Widget>[
-        //             Column(
-        //               crossAxisAlignment:
-        //               CrossAxisAlignment.start,
-        //               children: <Widget>[
-        //                  Text(
-        //                   "Job Type",
-        //                   style: ThemeConstant
-        //                       .text_style_600_18_3,
-        //                 ),
-        //                 Row(
-        //                   children: <Widget>[
-        //                     Expanded(
-        //                       child: Text(
-        //                         this
-        //                             .job
-        //                             .service_name ??
-        //                             "",
-        //                         style: ThemeConstant
-        //                             .text_style_500_18_primaryColor,
-        //                         maxLines: 1,
-        //                       ),
-        //                     ),
-        //                     SizedBox(
-        //                       width: 4,
-        //                     ),
-        //                     Expanded(
-        //                       child: Text(
-        //                         this
-        //                             .job
-        //                             .sub_service ??
-        //                             "",
-        //                         style: ThemeConstant
-        //                             .text_style_500_18_primaryColor,
-        //                         maxLines: 1,
-        //                       ),
-        //                     )
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //           ],
-        //         )),
-        //   ],
-        // ),
         SizedBox(
           height: 8,
         ),
         Text(
           "Job Description",
-          style: ThemeConstant.text_style_600_18_3,
+          style: ThemeConstant.text_style_500_18_primaryColor,
         ),
-         Text(
-            this.job.description ?? "",
-            style: ThemeConstant
-                .text_style_500_18_primaryColor,
-          ),
-
         SizedBox(
-          height: 8,
+          height: 10.0,
         ),
         Text(
-          "Job Address",
-          style: ThemeConstant.text_style_600_18_3,
-        ),Text(this.job.address ?? "",
-                style: ThemeConstant
-                    .text_style_500_18_primaryColor),
+          // this.job.description ?? "",
+          "Qua procella, illo eternus semel cui propello. Arma iniquus tribuo legentis victum tergo victor repeto, multus. Qui volup amita porro perseverantia. Positus lacunar qui praecepio St. Incertus surgo vires nolo.Cogo, modicus Malbodiensis defigo, maxime nutus. Spectaculum optimus defluo. Locupleto memor tamisium fodio priores, reddo praecox antea, suum. Sitis orbis duro, cedo moris prolusio nimis consui iuvo, imago. Placo novus.",
+        ),
         SizedBox(
-          height: 8,
+          height: 16,
         ),
-        Text(
-          "Service Date",
-          style: ThemeConstant.text_style_600_18_3,
+        Container(
+          color: Colors.grey,
+          height: 1.0,
+          width: double.infinity,
         ),
-        Text(this.job.service_date ?? "",
-            style: ThemeConstant
-                .text_style_500_18_primaryColor),
-        SizedBox(
-          height: 8,
+        Table(
+          children:[
+            TableRow(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(vertical:10.0),
+                  child: Text(
+                    "Job Address",
+                    style: ThemeConstant.text_style_500_18_primaryColor,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical:10.0),
+                  child: Text(this.job.address ?? "",
+                      style: ThemeConstant.text_style_600_17_3),
+                ),
+              ],
+            ),
+            TableRow(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    "Service Date",
+                    style: ThemeConstant.text_style_500_18_primaryColor,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(this.job.service_date ?? "",
+                      style: ThemeConstant.text_style_600_17_3),
+                ),
+              ],
+            ),
+            TableRow(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    "Service Time",
+                    style: ThemeConstant.text_style_500_18_primaryColor,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(this.job.service_time ?? "",
+                      style: ThemeConstant.text_style_600_17_3),
+                ),
+              ],
+            ),
+            TableRow(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(vertical:10.0),
+                  child: Text(
+                    "Amount",
+                    style: ThemeConstant.text_style_500_18_primaryColor,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(this.job.amount.toString() + " INR" ?? "",
+                      style: ThemeConstant.text_style_600_17_3),
+                ),
+              ],
+            )
+          ],
         ),
-        Text(
-          "Service Time",
-          style: ThemeConstant.text_style_600_18_3,
-        ),
-        Text(this.job.service_time ?? "",
-            style: ThemeConstant
-                .text_style_500_18_primaryColor),
-        SizedBox(
-          height: 8,
-        ),
-        Text(
-          "Amount",
-          style: ThemeConstant.text_style_600_18_3,
-        ),
-        Text(
-            this.job.amount.toString() + " INR" ??
-                "",
-            style: ThemeConstant
-                .text_style_500_18_primaryColor),
       ],
     );
   }

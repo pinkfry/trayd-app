@@ -69,69 +69,62 @@ class _JobBidPageState extends State<JobBidPage> {
                 delegate: SliverChildListDelegate(<Widget>[
                   Container(
                     padding: EdgeInsets.all(16.0),
-                    child: Column(
+                    child: Row(
                       children: <Widget>[
-                        SizedBox(
-                            width: double.infinity,
-                            child: Hero(
-                                tag: job.id + "-title",
+                        Flexible(
+                          flex: 2,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                  width: double.infinity,
+                                  child: Hero(
+                                      tag: job.id + "-title",
+                                      child: Text(
+                                        job.title ?? "",
+                                        style:
+                                            ThemeConstant.text_style_600_17_3,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ))),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Container(
+                                alignment: Alignment.centerLeft,
                                 child: Text(
-                                  job.title ?? "",
-                                  style: ThemeConstant.text_style_600_17_3,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ))),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                                child: Wrap(
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Job Type",
-                                      style: ThemeConstant.text_style_600_18_3,
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Text(
-                                            job.service_name ?? "",
-                                            style: ThemeConstant
-                                                .text_style_500_18_primaryColor,
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            job.sub_service ?? "",
-                                            style: ThemeConstant
-                                                .text_style_500_18_primaryColor,
-                                            maxLines: 1,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                  job.service_name ?? "",
+                                  style: ThemeConstant
+                                      .text_style_600_14_grey,
+                                  maxLines: 1,
                                 ),
-                              ],
-                            )),
-                          ],
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  job.sub_service ?? "",
+                                  style: ThemeConstant
+                                      .text_style_600_14_grey,
+                                  maxLines: 1,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 60.0,
+                          alignment: Alignment.bottomCenter,
+                          child: Text(job.amount.toString() + " INR" ?? "",
+                              textAlign: TextAlign.end,
+                              style: ThemeConstant
+                                  .text_style_500_18_primaryColor),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    
                     child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.only(
@@ -190,16 +183,15 @@ class _JobBidPageState extends State<JobBidPage> {
                               ],
                             ))),
                   ),
-
-                  SizedBox(height: 50,)
+                  SizedBox(
+                    height: 50,
+                  )
                 ]),
               ),
             ]),
             Align(
               alignment: Alignment.bottomCenter,
-              
-                          child: Padding(
-                
+              child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: SizedBox(
                     width: double.infinity,
@@ -240,7 +232,8 @@ class _JobBidPageState extends State<JobBidPage> {
                                                     const EdgeInsets.all(8.0),
                                                 child: Icon(Icons.done,
                                                     size: 40,
-                                                    color: ThemeConstant.color_2),
+                                                    color:
+                                                        ThemeConstant.color_2),
                                               ),
                                               backgroundColor:
                                                   ThemeConstant.primaryColor,
@@ -261,7 +254,8 @@ class _JobBidPageState extends State<JobBidPage> {
                                                 ),
                                                 Text(
                                                   "Employer will review your bid and hire you if interested!",
-                                                  style: TextStyle(fontSize: 18),
+                                                  style:
+                                                      TextStyle(fontSize: 18),
                                                   textAlign: TextAlign.center,
                                                 ),
                                               ],
@@ -311,112 +305,3 @@ class _JobBidPageState extends State<JobBidPage> {
     );
   }
 }
-
-// Padding(
-//                   padding: const EdgeInsets.all(4.0),
-//                   child: SizedBox(
-//                       width: double.infinity,
-//                       child: RaisedButton(
-//                         elevation: 16,
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: new BorderRadius.circular(10.0),
-//                         ),
-//                         padding: EdgeInsets.all(16),
-//                         color: ThemeConstant.primaryColor,
-//                         onPressed: () {
-//                           if (_formKey.currentState.validate()) {
-//                             if (!placing_bid) {
-//                               placing_bid = true;
-//                               setState(() {});
-//                               FirebaseAuth.instance.currentUser().then((user) {
-//                                 if (mounted) {
-//                                   ServerApis()
-//                                       .placeBid(user.uid, widget.job.id,
-//                                           int.parse(_bidAmountController.text))
-//                                       .then((res) {
-//                                     if (mounted) {
-//                                       if (res != null && res.success) {
-//                                         Navigator.of(context)
-//                                             .pushNamedAndRemoveUntil(
-//                                                 HomePage.tag,
-//                                                 (Route<dynamic> route) => false)
-//                                             .then((e) {});
-//                                         showDialog(
-//                                           context: context,
-//                                           barrierDismissible: false,
-//                                           builder: (BuildContext context) {
-//                                             // return object of type Dialog
-//                                             return AlertDialog(
-//                                               title: CircleAvatar(
-//                                                 radius: 30,
-//                                                 child: Padding(
-//                                                   padding:
-//                                                       const EdgeInsets.all(8.0),
-//                                                   child: Icon(Icons.done,
-//                                                       size: 40,
-//                                                       color: ThemeConstant
-//                                                           .color_2),
-//                                                 ),
-//                                                 backgroundColor:
-//                                                     ThemeConstant.primaryColor,
-//                                               ),
-//                                               content: Column(
-//                                                 mainAxisSize: MainAxisSize.min,
-//                                                 children: <Widget>[
-//                                                   Text(
-//                                                     "Bid Placed",
-//                                                     style: TextStyle(
-//                                                         fontSize: 22,
-//                                                         fontWeight:
-//                                                             FontWeight.w600),
-//                                                     textAlign: TextAlign.center,
-//                                                   ),
-//                                                   SizedBox(
-//                                                     height: 4,
-//                                                   ),
-//                                                   Text(
-//                                                     "Employer will review your bid and hire you if interested!",
-//                                                     style:
-//                                                         TextStyle(fontSize: 18),
-//                                                     textAlign: TextAlign.center,
-//                                                   ),
-//                                                 ],
-//                                               ),
-//                                               actions: <Widget>[
-//                                                 FlatButton(
-//                                                   child: Text(
-//                                                     "Close",
-//                                                     style: TextStyle(
-//                                                         color: ThemeConstant
-//                                                             .primaryColor),
-//                                                   ),
-//                                                   onPressed: () {
-//                                                     Navigator.pop(context);
-//                                                   },
-//                                                 ),
-//                                               ],
-//                                             );
-//                                           },
-//                                         );
-//                                       } else if (res != null &&
-//                                           res.message != null) {
-//                                         setState(() {
-//                                           error_message = res.message;
-//                                         });
-//                                       }
-//                                       setState(() {
-//                                         placing_bid = false;
-//                                       });
-//                                     }
-//                                   });
-//                                 }
-//                               });
-//                             }
-//                           }
-//                         },
-//                         child: Text(
-//                           !placing_bid ? "Place Bid" : "Placing Bid...",
-//                           style: ThemeConstant.text_style_500_18_2,
-//                         ),
-//                       )),
-//                 ),

@@ -43,7 +43,7 @@ class ThemeConstant {
   static const TextStyle text_style_600_18_3 =
   TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: color_3);
   static const TextStyle text_style_500_18_primaryColor =
-  TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: primaryColor);
+  TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: Colors.black);
   static const TextStyle text_style_500_14_primaryColor =
   TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: primaryColor);
   static const TextStyle text_style_400_16_4 =
@@ -80,5 +80,9 @@ class ThemeConstant {
   TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: color_2);
   static const TextStyle text_style_400_14_3 =
   TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: color_3);
+  static const TextStyle text_style_600_14_grey =
+  TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Colors.grey);
+   static const TextStyle text_style_400_14_2_white =
+  TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Colors.white);
 
 }

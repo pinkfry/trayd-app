@@ -11,9 +11,9 @@ class JobListItem2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 8,
+        elevation: 0.0,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: InkWell(
           onTap: onTab,
           customBorder:
@@ -48,7 +48,7 @@ class JobListItem2 extends StatelessWidget {
                                       new BorderRadius.all(Radius.circular(8))),
                               child: Text(
                                 this.job.getStatus() ?? "",
-                                style: ThemeConstant.text_style_400_14_2,
+                                style: ThemeConstant.text_style_400_14_2_white,
                               ),
                             ):Container(),
                         ],

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:job_posting_bidding_app/api/app_server.dart';
 import 'package:job_posting_bidding_app/model/service.dart';
 import 'package:job_posting_bidding_app/screens/jobs/job_hire_page.dart';
+import 'package:job_posting_bidding_app/screens/jobs/job_list_item.dart';
 import 'package:job_posting_bidding_app/screens/jobs/job_list_item_2.dart';
 import 'package:job_posting_bidding_app/screens/jobs/jobs_list_loading.dart';
+import 'package:job_posting_bidding_app/theme/theme.dart';
 
 class OrdersAsCustomer extends StatefulWidget {
   static String pageName = "Orders as Customer";
@@ -65,7 +67,8 @@ class _OrdersAsCustomerState extends State<OrdersAsCustomer> {
       );
     }
     if (jobs != null && jobs.length != 0) {
-      return Padding(
+      return Container(
+        color: ThemeConstant.color_background,
           padding: const EdgeInsets.all(8.0),
           child: RefreshIndicator(
             key: _refreshIndicatorKey,
