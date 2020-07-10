@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 class ServerApis {
   static const String serverAddress =
-      "http://ec2-3-18-225-80.us-east-2.compute.amazonaws.com";
+      "https://trayd.blogstation.co.in";
   Dio _dio;
 
   Future<Dio> getDio() async {
